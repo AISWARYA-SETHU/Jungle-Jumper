@@ -13,6 +13,7 @@ public class InputActions
         commandList = new List<Command>
         {
             new Jump(player,KeyCode.Space),
+            new PistolAttack(player,KeyCode.LeftControl),
             new WeaponSwap(player,Weapons.Pistol,KeyCode.Alpha1),
             new WeaponSwap(player, Weapons.Sword, KeyCode.Alpha2)
         };

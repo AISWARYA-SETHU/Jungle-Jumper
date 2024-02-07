@@ -6,9 +6,11 @@ public class AnimationClip
 {
     private string Name;
     public bool Status;
+    public string[] HigherPriority;
 
-    public AnimationClip(string Name)
+    public AnimationClip(string Name, params string[] higherPriority)
     {
         this.Name = Name;
+        this.HigherPriority = higherPriority;
     }
 }

@@ -45,6 +45,11 @@ public class PlayerActions
         
     }
 
+    public void PlayerPistolAttack()
+    {
+        AnimManager.instance.TryAnimation("Pistol");
+    }
+
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(player.playerCollider.bounds.center, player.playerCollider.bounds.size, 0,Vector2.down, 0.1f, layer);

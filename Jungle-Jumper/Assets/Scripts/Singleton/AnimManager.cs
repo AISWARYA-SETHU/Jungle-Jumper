@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AnimManager : MonoBehaviour
@@ -27,8 +28,8 @@ public class AnimManager : MonoBehaviour
     {
         animations = new Dictionary<string, AnimationClip>
         {
-            { "Walk", new AnimationClip("Walk") },
-            { "Idle", new AnimationClip("Idle") },
+            { "Walk", new AnimationClip("Walk", "Pistol") },
+            { "Idle", new AnimationClip("Idle", "Pistol") },
             { "Jump", new AnimationClip("Jump") },
             { "Pistol", new AnimationClip("Pistol") },
             { "Sword", new AnimationClip("Sword") }
@@ -37,7 +38,7 @@ public class AnimManager : MonoBehaviour
 
     void Update()
     {
-
+        Animate();
     }
 
     public void TryAnimation(string animationName)
@@ -47,13 +48,13 @@ public class AnimManager : MonoBehaviour
             animations[animationName].Status = true;
             currentAnimation = animationName;
         }
-        else if (currentAnimation != animationName)
+        else if (currentAnimation != animationName && !animations[animationName].HigherPriority.Contains(currentAnimation) || !animations[currentAnimation].Status)
         {
             animations[currentAnimation].Status = false;
             animations[animationName].Status = true;
             currentAnimation = animationName;
         }
-        Animate();
+       
     }
 
     private void Animate()
@@ -62,5 +63,10 @@ public class AnimManager : MonoBehaviour
         {
             animator.SetBool(key, animations[key].Status);
         }
+    }
+
+    public void OnAnimationDone(string animationName)
+    {
+        animations[animationName].Status = false;
     }
 }

@@ -58,11 +58,13 @@ public class PlayerActions
 
     public void TryWeapon(Weapons weapon)
     {
+        AnimManager.instance.SetWeapon((int)weapon);
         for(int i = 0; i<player.PlayerWeapons.Length; i++)
         {
             player.PlayerWeapons[i].SetActive(false);
         }
 
         player.PlayerWeapons[(int)weapon].SetActive(true);
+        AnimManager.instance.TryAnimation("Attack");
     }
 }

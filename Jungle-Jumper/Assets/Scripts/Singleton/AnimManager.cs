@@ -28,11 +28,12 @@ public class AnimManager : MonoBehaviour
     {
         animations = new Dictionary<string, AnimationClip>
         {
-            { "Walk", new AnimationClip("Walk", "Pistol") },
-            { "Idle", new AnimationClip("Idle", "Pistol") },
+            { "Walk", new AnimationClip("Walk", "Attack") },
+            { "Idle", new AnimationClip("Idle", "Attack") },
             { "Jump", new AnimationClip("Jump") },
             { "Pistol", new AnimationClip("Pistol") },
-            { "Sword", new AnimationClip("Sword") }
+            { "Sword", new AnimationClip("Sword") },
+            { "Attack", new AnimationClip("Attack")}
         };
     }
 
@@ -54,7 +55,7 @@ public class AnimManager : MonoBehaviour
             animations[animationName].Status = true;
             currentAnimation = animationName;
         }
-       
+
     }
 
     private void Animate()
@@ -63,6 +64,11 @@ public class AnimManager : MonoBehaviour
         {
             animator.SetBool(key, animations[key].Status);
         }
+    }
+
+    public void SetWeapon(float weapon)
+    {
+        animator.SetFloat("Weapon", weapon);
     }
 
     public void OnAnimationDone(string animationName)

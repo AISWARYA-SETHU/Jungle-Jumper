@@ -14,6 +14,5 @@ public class Jump : Command
     public override void GetKeyDown()
     {
         player.Actions.PlayerJump();
-        Debug.Log("Jumping");
     }
 }
